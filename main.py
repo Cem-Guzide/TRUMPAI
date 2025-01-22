@@ -2,13 +2,11 @@ import torch
 from transformers import Wav2Vec2ForCTC, Wav2Vec2Processor
 import soundfile as sf
 from solana.rpc.async_api import AsyncClient
-from pumpfun import create_memecoin  # Placeholder for pump.fun API integration
+from pumpfun import create_memecoin  
 
-# Initialize pre-trained models
 processor = Wav2Vec2Processor.from_pretrained("facebook/wav2vec2-base-960h")
 model = Wav2Vec2ForCTC.from_pretrained("facebook/wav2vec2-base-960h")
 
-# Function: Analyze Livestream
 def analyze_livestream(audio_path):
     """Analyze the livestream audio and extract key highlights."""
     print("Transcribing the livestream...")
@@ -30,7 +28,6 @@ def analyze_livestream(audio_path):
         print("No significant highlights found.")
         return None
 
-# Function: Deploy Coin
 async def deploy_coin(highlight, stream_link):
     """Deploy a memecoin based on the highlight."""
     print("Deploying memecoin...")
@@ -42,13 +39,11 @@ async def deploy_coin(highlight, stream_link):
         print(f"Memecoin created: {response}")
         return response
 
-# Main Function: Process Stream
 async def process_stream(audio_path, stream_link):
     """Process the stream by analyzing it and deploying a memecoin."""
     highlights = analyze_livestream(audio_path)
     
     if highlights:
-        # Use the first highlight for the memecoin
         await deploy_coin(highlights[0], stream_link)
     else:
         print("Stream analysis complete, but no highlights for coin deployment.")
